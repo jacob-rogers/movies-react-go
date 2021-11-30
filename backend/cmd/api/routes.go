@@ -19,6 +19,9 @@ func (app *application) routes() http.Handler {
 	// App status handler
 	router.HandlerFunc(http.MethodGet, "/status", app.statusHandler)
 
+	// GraphQL handlers
+	router.HandlerFunc(http.MethodPost, "/v1/graphql", app.moviesGraphQL)
+
 	// User signin handler
 	router.HandlerFunc(http.MethodPost, "/v1/signin", app.Signin)
 

@@ -47,10 +47,15 @@ func lookupEnvInt(key string, defaultValue ...int) int {
 
 // writeJSON function wraps json data with appropriate status code into
 // http response.
-func (app *application) writeJSON(w http.ResponseWriter, status int, data interface{}, wrap string) error {
-	wrapper := make(map[string]interface{})
+func (app *application) writeJSON(w http.ResponseWriter, status int, data interface{}, wrap ...string) error {
+	var wrapper interface{}
 
-	wrapper[wrap] = data
+	if len(wrap) > 0 {
+		wrapper = make(map[string]interface{})
+		wrapper.(map[string]interface{})[wrap[0]] = data
+	} else {
+		wrapper = data
+	}
 
 	js, err := json.Marshal(wrapper)
 	if err != nil {
