@@ -68,7 +68,7 @@ export default class Graphql extends Component {
     
     // Should take an effect only when search term is more
     // than 2 characters long
-    if (value.length >= 2) {
+    if (value.length > 2) {
       this.performSearch();
     } else {
       this.getAllMovies();
@@ -104,7 +104,6 @@ export default class Graphql extends Component {
         return theList;
       })
       .then((theList) => {
-        console.log(theList);
         if (theList.length) {
           this.setState({
             movies: theList,

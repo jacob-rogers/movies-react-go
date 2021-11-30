@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"strings"
 
@@ -58,7 +57,6 @@ var fields = gql.Fields{
 			if ok {
 				for _, currentMovie := range movies {
 					if strings.Contains(strings.ToLower(currentMovie.Title), strings.ToLower(search)) {
-						log.Println("Found one")
 						theList = append(theList, currentMovie)
 					}
 				}

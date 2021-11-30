@@ -17,7 +17,6 @@ export default class Admin extends Component {
 
     fetch("http://localhost:4000/v1/movies")
       .then((response) => {
-        console.log("status code is", response.status);
         if (response.status !== 200) {
           const err = Error;
           err.message = "Invalid response code: " + response.status;
