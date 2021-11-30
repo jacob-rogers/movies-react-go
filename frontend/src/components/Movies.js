@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
 
 export default class Movies extends Component {
   state = {
@@ -9,7 +9,7 @@ export default class Movies extends Component {
   };
 
   componentDidMount() {
-    fetch("http://localhost:4000/v1/movies")
+    fetch(`${process.env.REACT_APP_API_URL}/v1/movies`)
       .then((response) => {
         if (response.status !== 200) {
           const err = Error;

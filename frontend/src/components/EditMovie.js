@@ -1,16 +1,16 @@
-import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import { confirmAlert } from 'react-confirm-alert';
+import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
+import { confirmAlert } from "react-confirm-alert";
 
-import Alert from './ui-components/Alert';
-import Input from './form-components/Input';
-import Select from './form-components/Select';
-import TextArea from './form-components/TextArea';
+import Alert from "./ui-components/Alert";
+import Input from "./form-components/Input";
+import Select from "./form-components/Select";
+import TextArea from "./form-components/TextArea";
 
-import 'react-confirm-alert/src/react-confirm-alert.css';
-import './EditMovie.css';
+import "react-confirm-alert/src/react-confirm-alert.css";
+import "./EditMovie.css";
 
-const MPAA_RATINGS = ['G', 'PG', 'PG-13', 'R', 'NC17'];
+const MPAA_RATINGS = ["G", "PG", "PG-13", "R", "NC17"];
 
 export default class EditMovie extends Component {
   constructor(props) {
@@ -60,12 +60,12 @@ export default class EditMovie extends Component {
     headers.append("Authorization", `Bearer ${this.props.jwt}`);
 
     const requestOptions = {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify(payload),
       headers,
     };
 
-    fetch("http://localhost:4000/v1/admin/editmovie", requestOptions)
+    fetch(`${process.env.REACT_APP_API_URL}/v1/admin/editmovie`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
         if (data.error) {
@@ -116,7 +116,7 @@ export default class EditMovie extends Component {
     const { id } = this.props.match.params;
 
     if (id > 0) {
-      fetch("http://localhost:4000/v1/movie/" + id)
+      fetch(`${process.env.REACT_APP_API_URL}/v1/movie/` + id)
         .then((response) => {
           if (response.status !== 200) {
             const err = Error;
@@ -154,11 +154,11 @@ export default class EditMovie extends Component {
 
   confirmDelete = (evt) => {
     confirmAlert({
-      title: 'Delete movie',
-      message: 'Are you sure?',
+      title: "Delete movie",
+      message: "Are you sure?",
       buttons: [
         {
-          label: 'Yes',
+          label: "Yes",
           onClick: () => {
             /*
              * Delete the movie
@@ -168,7 +168,7 @@ export default class EditMovie extends Component {
             headers.append("Content-Type", "application/json");
             headers.append("Authorization", `Bearer ${this.props.jwt}`);
 
-            fetch("http://localhost:4000/v1/admin/deletemovie/" + this.state.movie.id, {
+            fetch(`${process.env.REACT_APP_API_URL}/v1/admin/deletemovie/` + this.state.movie.id, {
               method: "GET",
               headers,
             })
@@ -177,7 +177,7 @@ export default class EditMovie extends Component {
                 if (data.error) {
                   this.setState({
                     alert: {
-                      type: 'alert-danger',
+                      type: "alert-danger",
                       message: data.error.message,
                     },
                   });
@@ -190,7 +190,7 @@ export default class EditMovie extends Component {
           }
         },
         {
-          label: 'No',
+          label: "No",
           onClick: () => { }
         }
       ]

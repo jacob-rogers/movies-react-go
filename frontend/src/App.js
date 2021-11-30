@@ -1,16 +1,16 @@
-import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import React, { Component, Fragment } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import Admin from './components/Admin';
-import EditMovie from './components/EditMovie';
-import Genres from './components/Genres';
-import Graphql from './components/Graphql';
-import Home from './components/Home';
-import Login from './components/Login';
-import Movies from './components/Movies';
-import OneGenre from './components/OneGenre';
-import OneMovie from './components/OneMovie';
-import OneMovieGraphql from './components/OneMovieGraphql';
+import Admin from "./components/Admin";
+import EditMovie from "./components/EditMovie";
+import Genres from "./components/Genres";
+import Graphql from "./components/Graphql";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import Movies from "./components/Movies";
+import OneGenre from "./components/OneGenre";
+import OneMovie from "./components/OneMovie";
+import OneMovieGraphql from "./components/OneMovieGraphql";
 
 export default class App extends Component {
   constructor(props) {

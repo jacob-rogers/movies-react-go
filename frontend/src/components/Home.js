@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import MovieTickets from '../images/movie_tickets.jpg';
-import './Home.css';
+import MovieTickets from "../images/movie_tickets.jpg";
+import "./Home.css";
 
 export default class Home extends Component {
   render() {

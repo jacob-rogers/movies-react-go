@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component, Fragment } from "react"
 
-import Alert from './ui-components/Alert';
-import Input from './form-components/Input';
+import Alert from "./ui-components/Alert";
+import Input from "./form-components/Input";
 
 export default class Login extends Component {
   constructor(props) {
@@ -61,11 +61,11 @@ export default class Login extends Component {
     const payload = Object.fromEntries(data.entries());
 
     const requestOptions = {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify(payload),
     };
 
-    fetch("http://localhost:4000/v1/signin", requestOptions)
+    fetch(`${process.env.REACT_APP_API_URL}/v1/signin`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
         if (data.error) {

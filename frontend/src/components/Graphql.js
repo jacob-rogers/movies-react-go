@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import Input from './form-components/Input';
+import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
+import Input from "./form-components/Input";
 
 export default class Graphql extends Component {
   constructor(props) {
@@ -40,7 +40,7 @@ export default class Graphql extends Component {
       headers,
     };
 
-    fetch("http://localhost:4000/v1/graphql", requestOptions)
+    fetch(`${process.env.REACT_APP_API_URL}/v1/graphql`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
         const theList = Object.values(data.data.list);
@@ -96,7 +96,7 @@ export default class Graphql extends Component {
       headers,
     };
 
-    fetch("http://localhost:4000/v1/graphql", requestOptions)
+    fetch(`${process.env.REACT_APP_API_URL}/v1/graphql`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
         const theList = Object.values(data.data.search);
