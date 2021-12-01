@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 
 import Loading from "./Loading";
 
-export default function MoviesFunc(props) {
+export default function OneGenreFunc(props) {
   const [movies, setMovies] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(null);
+  const [genreName, setGenreName] = useState("");
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/v1/movies`)
+    fetch(`${process.env.REACT_APP_API_URL}/v1/movies/` + props.match.params.id)
       .then((response) => {
         if (response.status !== 200) {
           setError("Invalid response code: " + response.status);
@@ -20,21 +21,28 @@ export default function MoviesFunc(props) {
         return response.json();
       })
       .then((data) => {
-        setMovies(data.movies);
+        if (!data.movies) {
+          setMovies([]);
+        } else {
+          setMovies(data.movies);
+        }
+        setGenreName(props.location.genreName);
         // Just to simulate network/operational latencies
         setTimeout(() => {
           setIsLoaded(true);
-        }, 500);
+        }, 200);
       });
-  }, []);
+  }, [props.match.params.id, props.location.genreName]);
+
 
   if (error) return <div>Error: {error.message}</div>;
+  if (!isLoaded) return <Loading />;
 
   return (
     <Fragment>
-      <h2>Choose a movie</h2>
-      {!isLoaded ? <Loading /> : (
-        <div className="list-group">
+      <h2>Genre: {genreName}</h2>
+
+      <div className="list-group">
         {movies.map((movie) => (
           <Link
             key={movie.id}
@@ -44,7 +52,6 @@ export default function MoviesFunc(props) {
           </Link>
         ))}
       </div>
-      )}
     </Fragment>
   );
 }

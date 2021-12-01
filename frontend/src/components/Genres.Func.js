@@ -23,7 +23,7 @@ export default function GenresFunc(props) {
         // Just to simulate network/operational latencies
         setTimeout(() => {
           setIsLoaded(true);
-        }, 1000);
+        }, 500);
       });
     }, []);
 
@@ -46,5 +46,5 @@ export default function GenresFunc(props) {
         </div>
       )}
     </Fragment>
-  )
+  );
 }

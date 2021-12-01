@@ -8,8 +8,8 @@ import Graphql from "./components/Graphql";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import MoviesFunc from "./components/Movies.Func";
-import OneGenre from "./components/OneGenre";
-import OneMovie from "./components/OneMovie";
+import OneGenreFunc from "./components/OneGenre.Func";
+import OneMovieFunc from "./components/OneMovie.Func";
 import OneMovieGraphql from "./components/OneMovieGraphql";
 
 export default class App extends Component {
@@ -88,14 +88,14 @@ export default class App extends Component {
 
             <div className="col-md-10">
               <Switch>
-                <Route path="/movies/:id" component={OneMovie} />
+                <Route path="/movies/:id" component={OneMovieFunc} />
                 <Route path="/moviesgraphql/:id" component={OneMovieGraphql} />
 
                 <Route path="/movies">
                   <MoviesFunc />
                 </Route>
 
-                <Route path="/genres/:id" component={OneGenre} />
+                <Route path="/genres/:id" component={OneGenreFunc} />
 
                 <Route
                   exact
