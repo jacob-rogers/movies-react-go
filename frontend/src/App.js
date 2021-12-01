@@ -7,7 +7,7 @@ import Genres from "./components/Genres";
 import Graphql from "./components/Graphql";
 import Home from "./components/Home";
 import Login from "./components/Login";
-import Movies from "./components/Movies";
+import MoviesFunc from "./components/Movies.Func";
 import OneGenre from "./components/OneGenre";
 import OneMovie from "./components/OneMovie";
 import OneMovieGraphql from "./components/OneMovieGraphql";
@@ -84,9 +84,6 @@ export default class App extends Component {
                   <Link to="/graphql">GraphQL</Link>
                 </li>
               </ul>
-              <pre>
-                {JSON.stringify(this.state, null, 4)}
-              </pre>
             </div>
 
             <div className="col-md-10">
@@ -95,7 +92,7 @@ export default class App extends Component {
                 <Route path="/moviesgraphql/:id" component={OneMovieGraphql} />
 
                 <Route path="/movies">
-                  <Movies />
+                  <MoviesFunc />
                 </Route>
 
                 <Route path="/genres/:id" component={OneGenre} />

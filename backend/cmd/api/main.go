@@ -63,8 +63,14 @@ func main() {
 	}
 
 	// HTTP server configuration
+	var addr string
+	if os.Getenv("APP_ENV") == "development" {
+		addr = fmt.Sprintf("localhost:%d", cfg.port)
+	} else {
+		addr = fmt.Sprintf(":%d", cfg.port)
+	}
 	srv := &http.Server{
-		Addr:         fmt.Sprintf(":%d", cfg.port),
+		Addr:         addr,
 		Handler:      app.routes(),
 		IdleTimeout:  time.Minute,
 		ReadTimeout:  10 * time.Second,
