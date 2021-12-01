@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Admin from "./components/Admin";
 import EditMovie from "./components/EditMovie";
-import Genres from "./components/Genres";
+import GenresFunc from "./components/Genres.Func";
 import Graphql from "./components/Graphql";
 import Home from "./components/Home";
 import Login from "./components/Login";
@@ -108,7 +108,7 @@ export default class App extends Component {
                 <Route exact path="/graphql"><Graphql /></Route>
 
                 <Route exact path="/genres">
-                  <Genres />
+                  <GenresFunc />
                 </Route>
 
                 <Route
