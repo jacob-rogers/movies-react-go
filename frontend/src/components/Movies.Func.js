@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Fragment } from "react";
 import { Link } from "react-router-dom";
 
-import Loading from "./Loading";
+import Loading from "./ui-components/Loading";
 
 export default function MoviesFunc(props) {
   const [movies, setMovies] = useState([]);

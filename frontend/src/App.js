@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import Admin from "./components/Admin";
-import EditMovie from "./components/EditMovie";
+import AdminFunc from "./components/Admin.Func";
+import EditMovieFunc from "./components/EditMovie.Func";
 import GenresFunc from "./components/Genres.Func";
 import Graphql from "./components/Graphql";
 import Home from "./components/Home";
-import Login from "./components/Login";
+import LoginFunc from "./components/Login.Func";
 import MoviesFunc from "./components/Movies.Func";
 import OneGenreFunc from "./components/OneGenre.Func";
 import OneMovieFunc from "./components/OneMovie.Func";
@@ -101,7 +101,7 @@ export default class App extends Component {
                   exact
                   path="/login"
                   component={(props) => (
-                    <Login {...props} handleJWTChange={this.handleJWTChange} />
+                    <LoginFunc {...props} handleJWTChange={this.handleJWTChange} />
                   )}
                 />
 
@@ -114,14 +114,14 @@ export default class App extends Component {
                 <Route
                   path="/admin/movie/:id"
                   component={(props) => (
-                    <EditMovie {...props} jwt={this.state.jwt} />
+                    <EditMovieFunc {...props} jwt={this.state.jwt} />
                   )}
                 />
 
                 <Route
                   path="/admin"
                   component={(props) => (
-                    <Admin {...props} jwt={this.state.jwt} />
+                    <AdminFunc {...props} jwt={this.state.jwt} />
                   )}
                 />
 

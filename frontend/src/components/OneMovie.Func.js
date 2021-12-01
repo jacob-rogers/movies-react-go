@@ -1,5 +1,6 @@
 import React, { useEffect, useState, Fragment } from "react";
-import Loading from "./Loading";
+
+import Loading from "./ui-components/Loading";
 
 export default function OneMovieFunc(props) {
   const [movie, setMovie] = useState({});

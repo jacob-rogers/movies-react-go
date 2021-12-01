@@ -67,6 +67,12 @@ func (app *application) Signin(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	// If no user found at all, respond with invalid email provided
+	if foundUser.Email == "" {
+		app.errorJSON(w, errors.New("unauthorized: invalid email"))
+		return
+	}
+
 	// Passwords inside users file db should also be encrypted
 	hashedPassword := foundUser.Password
 

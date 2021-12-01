@@ -1,16 +1,20 @@
 import React, { useEffect, useState, Fragment } from "react";
 import { Link } from "react-router-dom";
-
 import Loading from "./ui-components/Loading";
 
-export default function OneGenreFunc(props) {
+export default function EditMovieFunc(props) {
   const [movies, setMovies] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(null);
-  const [genreName, setGenreName] = useState("");
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/v1/movies/` + props.match.params.id)
+    // Redirect to login page if no JWT provided
+    if (!props.jwt) {
+      props.history.push({ pathname: "/login" });
+      return;
+    }
+
+    fetch(`${process.env.REACT_APP_API_URL}/v1/movies`)
       .then((response) => {
         if (response.status !== 200) {
           setError("Invalid response code: " + response.status);
@@ -21,18 +25,17 @@ export default function OneGenreFunc(props) {
         return response.json();
       })
       .then((data) => {
-        if (!data.movies) {
-          setMovies([]);
-        } else {
-          setMovies(data.movies);
-        }
-        setGenreName(props.location.genreName);
+        setMovies(data.movies);
         // Just to simulate network/operational latencies
         setTimeout(() => {
           setIsLoaded(true);
-        }, 200);
+        }, 500);
       });
-  }, [props.match.params.id, props.location.genreName]);
+
+  }, [
+    props.history,
+    props.jwt,
+  ]);
 
 
   if (error) return <div>Error: {error.message}</div>;
@@ -40,14 +43,13 @@ export default function OneGenreFunc(props) {
 
   return (
     <Fragment>
-      <h2>Genre: {genreName}</h2>
-
+      <h2>Manage Catalogue</h2>
       <div className="list-group">
         {movies.map((movie) => (
           <Link
             key={movie.id}
             className="list-group-item list-group-item-action"
-            to={`/movies/${movie.id}`}>
+            to={`/admin/movie/${movie.id}`}>
             {movie.title}
           </Link>
         ))}
